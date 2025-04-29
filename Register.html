@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Page</title>
+  <style>
+    /* General Body Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #555, #feb47b); /* Gradient background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Register Container Styles */
+    .register-container {
+      width: 100%;
+      max-width: 380px;
+      padding: 25px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .register-container:hover {
+      transform: scale(1.03); /* Slight hover effect for the form */
+    }
+
+    /* Title Style */
+    .register-container h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    /* Label Styles */
+    .register-container label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin-top: 15px;
+      color: #555;
+    }
+
+    /* Input Field Styles */
+    .register-container input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    /* Button Styles */
+    .register-container button {
+      width: 100%;
+      padding: 12px;
+      background: #555;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    .register-container button:hover {
+      background: #feb47b;
+    }
+
+    /* Link Style */
+    a {
+      text-decoration: none;
+      color:  #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #0056b3;
+    }
+
+    /* Responsive Design for Mobile */
+    @media (max-width: 400px) {
+      .register-container {
+        padding: 20px;
+      }
+      .register-container h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Register</h2>
+    <form id="register-form">
+      <label for="register-username">Username</label>
+      <input type="text" id="register-username" placeholder="Enter username" required>
+      
+      <label for="register-password">Password</label>
+      <input type="password" id="register-password" placeholder="Enter password" required>
+
+      <button type="submit">Register</button>
+      <p>Already have an account? <a href="login.html">Click here to login</a></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('register-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById('register-username').value.trim();
+      const password = document.getElementById('register-password').value.trim();
+
+      if (!username || !password) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return;
+      }
+
+      // Store credentials in localStorage
+      localStorage.setItem("registeredUsername", username);
+      localStorage.setItem("registeredPassword", password);
+
+      alert(`Welcome, ${username}! Your account has been created. Redirecting to login...`);
+      document.getElementById('register-form').reset();
+
+      // Redirect to login page
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
